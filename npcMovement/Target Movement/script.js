@@ -13,23 +13,33 @@ let gameFrame = 0;
 class Enemy {
     constructor(){
         this.image = new Image();
-        this.image.src = 'enemy1.png';
-
-
-        //this.speed = Math.random()* 4 - 2;
-        this.spriteWidth = 293;
-        this.spriteHeight = 155;       
+        this.image.src = 'enemy4.png';
+        this.speed = Math.random()* 4 + 1;
+        this.spriteWidth = 213;
+        this.spriteHeight = 212;       
         this.width = this.spriteWidth /2.5;
         this.height = this.spriteHeight/2.5;
-        this.frame = 0;
-        this.flapSpeed = Math.floor(Math.random() * 3+ 1);        
         this.x = Math.random()*(canvas.width - this.width); //randomly generated position
         this.y = Math.random()*(canvas.height - this.height); //randomly generated position
+        this.newX = Math.random()* canvas.width; //randomized new position inside of canvas
+        this.newY = Math.random()* canvas.height;
+        this.frame = 0;
+        this.flapSpeed = Math.floor(Math.random() * 3+ 1); //math that floor rounds them down to be whole numbers
+        this.interval = Math.floor(Math.random()* 200 + 50); 
     }
     //animation update from first position
     update(){
-            this.x+= Math.random()*15 - 7.5;
-            this.y+= Math.random()*10 - 5;
+            if(gameFrame % this.interval === 0){
+                this.newX = Math.random()*(canvas.width - this.width);
+                this.newY = Math.random()*(canvas.height - this.height);
+            }
+            let dx = this.x - this.newX;
+            let dy = this.y - this.newY;
+            this.x -= dx/70; //current position is always moving to new position by 70th of their
+            this.y -= dy/70; // distance for every animation frame 
+            //this.x = 0;
+            //this.y = 0;
+            if(this.x + this.width < 0)this.x = canvas.width;
             //animate sprites;
             if(gameFrame % this.flapSpeed === 0){
             this.frame > 4 ? this.frame = 0: this.frame++;
