@@ -20,3 +20,23 @@ body{
 p{
     color:pink;
 }
+div ul li a:hover,
+div ul li a.active{
+    background: #fff;
+    color: #2b1055;
+}
+div ul li a{
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 20px;
+}
+div ul{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+div ul li{
+    list-style: none;
+    margin-left: 20px;
+}
