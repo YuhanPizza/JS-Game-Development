@@ -36,10 +36,10 @@ class Enemy {
     update(){
             //creating periodical horizontal movement
             //sin(angle) = opposite / hypotenuse
-            this.x = canvas.width/2* Math.cos(this.angle* Math.PI/180) + (canvas.width/2 - this.width/2);
+            this.x = canvas.width/2* Math.sin(this.angle* Math.PI/90) + (canvas.width/2 - this.width/2);
             //creating periodical vertical values
             //cos(angle) = adjacent / hypotenuse
-            this.y = canvas.height/2 * Math.sin(this.angle* Math.PI/90) + (canvas.height/2 - this.height/2);
+            this.y = canvas.height/2 * Math.cos(this.angle* Math.PI/180) + (canvas.height/2 - this.height/2);
             //controls the speed of movement
             this.angle += this.angleSpeed;
             //animate sprites;
